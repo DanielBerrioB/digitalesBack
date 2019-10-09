@@ -2,8 +2,8 @@ module.exports = {
   pool: {
     connectionLimit: 10,
     host: "localhost",
-    user: "equipo2",
-    password: "equ1p02db",
+    user: "root", //equipo2
+    password: "", //3qu1p02db
     database: "equipo2"
   }
 };

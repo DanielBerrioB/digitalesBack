@@ -13,6 +13,7 @@ function query(sql, data = []) {
         reject(error);
         return;
       }
+
       connection.query(sql, data, (error, result) => {
         connection.release();
         if (error) {
@@ -25,4 +26,4 @@ function query(sql, data = []) {
   });
 }
 
-module.exports = query;
+module.exports = { query };
