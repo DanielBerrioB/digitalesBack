@@ -1,7 +1,7 @@
 const database = require("../utils/database.utils");
 
 const addMedicionQuery =
-  "INSERT INTO mediciones (id_sensores, id_aulas, date, value, description, battery_level) VALUES (?, ?, ?, ?, ?, ?);";
+  "INSERT INTO mediciones (id_sensores, id_aulas, date, humidity_sensor, temp_sensor, description, battery_level) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 const getAllMedicionQuery = "SELECT * FROM mediciones";
 
@@ -15,6 +15,10 @@ function getAllMedicion(req, res) {
     .query(getAllMedicionQuery, [])
     .then(result => {
       if (result) {
+	result.forEach(element => {
+		let newDate = element.date + ' ';
+		element.date = newDate.replace(' GMT-0500 (Colombia Standard Time) ', '');
+	})
         res.status(200).send({
           message: "Datos",
           status: true,
@@ -46,27 +50,28 @@ function getAllMedicion(req, res) {
 function addMedicion(req, res) {
   let {
     id_sensores,
-    id_aulas,
     date,
-    value,
+    humidity_sensor,
+    temp_sensor,
     description,
     battery_level
   } = req.body;
 
   if (
     id_sensores &&
-    id_aulas &&
     date &&
-    value &&
+    humidity_sensor &&
+    temp_sensor &&
     description &&
     battery_level
   ) {
     database
       .query(addMedicionQuery, [
         id_sensores,
-        id_aulas,
+        "11-305",
         date,
-        value,
+        humidity_sensor,
+        temp_sensor,
         description,
         battery_level
       ])
