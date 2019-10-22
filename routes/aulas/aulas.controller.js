@@ -2,9 +2,9 @@ const database = require("../utils/database.utils");
 
 const addAulaQuery = "INSERT INTO aulas (id_aulas, description) VALUES (?, ?);";
 
+
 function addAula(req, res) {
   let { id_aulas, description } = req.body;
-
   if (id_aulas && description) {
     database
       .query(addAulaQuery, [id_aulas, description])

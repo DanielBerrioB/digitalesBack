@@ -18,7 +18,7 @@ function getAllMedicion(req, res) {
         res.status(200).send({
           message: "Datos",
           status: true,
-          data: result
+          data: result,
         });
       } else {
         res.status(400).send({
