@@ -15,14 +15,17 @@ function getAllMedicion(req, res) {
     .query(getAllMedicionQuery, [])
     .then(result => {
       if (result) {
-	result.forEach(element => {
-		let newDate = element.date + ' ';
-		element.date = newDate.replace(' GMT-0500 (Colombia Standard Time) ', '');
-	})
+        result.forEach(element => {
+          let newDate = element.date + " ";
+          element.date = newDate.replace(
+            " GMT-0500 (Colombia Standard Time) ",
+            ""
+          );
+        });
         res.status(200).send({
           message: "Datos",
           status: true,
-          data: result,
+          data: result
         });
       } else {
         res.status(400).send({
