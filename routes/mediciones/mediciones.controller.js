@@ -3,7 +3,7 @@ const database = require("../utils/database.utils");
 const addMedicionQuery =
   "INSERT INTO mediciones (id_sensores, id_aulas, date, humidity_sensor, temp_sensor, description, battery_level) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
-const getAllMedicionQuery = "SELECT * FROM mediciones";
+const getAllMedicionQuery = "SELECT * FROM mediciones ORDER BY date;";
 
 /**
  * Gets all the data from mediciones table
