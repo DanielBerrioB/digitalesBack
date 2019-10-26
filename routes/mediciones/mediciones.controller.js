@@ -81,6 +81,19 @@ function addMedicion(req, res) {
       ])
       .then(result => {
         if (result) {
+          const io = req.app.locals.socketIo;
+          io.on("connect", socket => {
+            socket.emit("newData", {
+              id_sensores,
+              aula: "11-305",
+              date,
+              humidity_sensor,
+              temp_sensor,
+              description,
+              battery_level
+            });
+          });
+          
           res.status(201).send({
             message: "Se agregó con éxito",
             status: true,
